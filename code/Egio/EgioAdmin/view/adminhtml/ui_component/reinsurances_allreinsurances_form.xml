@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">reinsurances_allreinsurances_form.allreinsurances_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Egio Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save_and_continue" class="EgioAdmin\Egio\Block\Adminhtml\Allreinsurances\Edit\SaveAndContinueButton"/>
+            <button name="save" class="EgioAdmin\Egio\Block\Adminhtml\Allreinsurances\Edit\SaveButton"/>
+            <button name="reset" class="EgioAdmin\Egio\Block\Adminhtml\Allreinsurances\Edit\ResetButton"/>
+            <button name="delete" class="EgioAdmin\Egio\Block\Adminhtml\Allreinsurances\Edit\DeleteButton"/>
+            <button name="back" class="EgioAdmin\Egio\Block\Adminhtml\Allreinsurances\Edit\BackButton"/>
+        </buttons>
+        <namespace>reinsurances_allreinsurances_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>reinsurances_allreinsurances_form.allreinsurances_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="allreinsurances_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="Egio/allreinsurances/save"/>
+        </settings>
+        <dataProvider class="EgioAdmin\Egio\Model\Allreinsurances\DataProvider" name="allreinsurances_form_data_source">
+            <settings>
+                <requestFieldName>reinsurance_id</requestFieldName>
+                <primaryFieldName>reinsurance_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="reinsurance_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">allreinsurance</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>reinsurance_id</dataScope>
+            </settings>
+        </field>
+        <field name="status" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">allreinsurances</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable Egio</label>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="title" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">allreinsurances</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">reinsurances Title</label>
+                <dataScope>title</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="content" sortOrder="10">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Content</label>
+        </settings>
+        <field name="description" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">allreinsurances</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <label/>
+                <dataScope>description</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

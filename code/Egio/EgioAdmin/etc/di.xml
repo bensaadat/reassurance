@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Egio\EgioAdmin\Api\Data\AllreinsurancesInterface" type="Egio\EgioAdmin\Model\Allreinsurances" />
+	<preference for="Egio\EgioAdmin\Api\AllreinsurancesRepositoryInterface" type="Egio\EgioAdmin\Model\AllreinsurancesRepository" />
+	<virtualType name="AllreinsurancesGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Egio\EgioAdmin\Model\ResourceModel\Allreinsurances\Collection</argument>
+        </arguments>
+    </virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="reinsurances_allreinsurances_listing_data_source" xsi:type="string">Egio\EgioAdmin\Model\ResourceModel\Allreinsurances\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Egio\EgioAdmin\Model\ResourceModel\Allreinsurances\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">Egio_reinsurances</argument>
+            <argument name="eventPrefix" xsi:type="string">Egio_reinsurances_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">Egio_reinsurances_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Egio\Egio\Model\ResourceModel\Allreinsurances</argument>
+        </arguments>
+    </type>
+	<type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Egio\EgioAdmin\Api\Data\AllreinsurancesInterface" xsi:type="string">Egio\EgioAdmin\Api\AllreinsurancesRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

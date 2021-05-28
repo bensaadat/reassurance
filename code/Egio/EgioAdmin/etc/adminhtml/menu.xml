@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Egio_EgioAdmin::custom_menu" title="Egio" module="Egio_EgioAdmin" sortOrder="51" resource="Egio_EgioAdmin::custom_menu" />
+        <add id="Egio_EgioAdmin::custom_menu1" title="Reinsurances" module="Egio_EgioAdmin" sortOrder="10" action="EgioAdmin/EgioGrid/index" resource="Egio_EgioAdmin::custom_menu1" parent="Egio_EgioAdmin::custom_menu" />
+    </menu>
+</config>
